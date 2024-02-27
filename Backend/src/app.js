@@ -34,4 +34,20 @@ app.use(express.static("public"))
 
 app.use(cookieParser());
 
+// testing the server 
+
+app.get("/", (req, res) => {
+    res.send("Welcome is running start development");
+});
+
+// routes import 
+import userRouter from './routes/user.routes.js'
+
+// routes declarations 
+app.use("/api/v1/users", userRouter);
+
+
+
+
+
 export { app };

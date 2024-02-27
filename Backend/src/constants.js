@@ -1,1 +1,1 @@
-export const DB_NAME = "couponbazaar" 
+export const DB_NAME = "couponBazaar" 
