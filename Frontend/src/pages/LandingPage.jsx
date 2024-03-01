@@ -1,7 +1,8 @@
 // Home.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import NavBar from '../components/NavBar.jsx';
+import Footer from '../components/Footer.jsx';
 
 
 const SignUpButton = ({ onClick }) => {
@@ -28,6 +29,7 @@ const LandingPage = () => {
 
   return (
    <>
+    <NavBar />
    <div className="bg-gray-100 min-h-screen flex items-center justify-center bg-cover bg-center h-screen" style={{backgroundImage: imageUrl}}>
 
 

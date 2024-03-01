@@ -1,26 +1,49 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import Footer from '../components/Footer.jsx';
+import AuthUser from '../components/Auth/AuthUser.js'; // Import AuthUser
+import { useAuth } from '../components/Auth/AuthProvider.jsx';
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
-  const location = useLocation();
-  const userData = location.state && location.state.userData;
+  const { authenticated } = useAuth();
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
+  const { getUserDetails } = AuthUser();
+  useEffect(() => {
+    if (!authenticated) {
+      console.log("Time to redirect");
+      navigate("/");
+    } else {
+      const fetchUserData = async () => {
+        const user = getUserDetails();
+        setUserData(user);
+        setLoading(false); 
+      };
+      fetchUserData();
+    }
+  }, [authenticated, navigate]);
 
   return (
     <div>
-      <NavBar/>
-      {userData ? (
-        <div>
-          <p>User Data: {userData.username}, {userData.email}, {userData.fullName}</p>
-          <Link to="/about">Go to About</Link>
-        </div>
+      {loading ? ( // Render loading indicator while loading is true
+        <h1>Loading...</h1>
       ) : (
-        <p>No user data available</p>
+        <>
+          <h1>Welcome, {userData && userData.fullName}</h1>
+          <p>{userData && userData.email}</p>
+          <NavBar />
+          <h1>Home Component</h1>
+          <Link to="/about">Go to About</Link>
+          <Footer />
+        </>
       )}
-      <Footer/>
     </div>
   );
 };
 
 export default Home;
+
