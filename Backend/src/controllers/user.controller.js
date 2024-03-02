@@ -63,7 +63,7 @@ const registerUser = asyncHandler( async (req, res) => {
     // //     throw new ApiError(400, "Avatar file is required")
     // // }
    
-console.log("Uploading");
+    console.log("Uploading");
     const user = await User.create({
         fullName,
        // avatar:  "",//avatar.url ||
@@ -88,8 +88,6 @@ console.log("Uploading");
         new ApiResponse(200, createdUser, "User registered Successfully")
     )
 } )
-
-
 
 const loginUser = asyncHandler(async (req, res) =>{
     // req body -> data

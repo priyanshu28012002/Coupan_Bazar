@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import Footer from '../components/Footer.jsx';
 import AuthUser from '../components/Auth/AuthUser.js'; // Import AuthUser
-import { useAuth } from '../components/Auth/AuthProvider.jsx';
+//import { useAuth } from '../components/Auth/AuthProvider.jsx';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth.js';
 
 
 const Home = () => {
@@ -14,8 +15,9 @@ const Home = () => {
   const [loading, setLoading] = useState(true); // Add loading state
   const { getUserDetails } = AuthUser();
   useEffect(() => {
+    
+   
     if (!authenticated) {
-      console.log("Time to redirect");
       navigate("/");
     } else {
       const fetchUserData = async () => {
@@ -25,7 +27,7 @@ const Home = () => {
       };
       fetchUserData();
     }
-  }, [authenticated, navigate]);
+  }, []);
 
   return (
     <div>

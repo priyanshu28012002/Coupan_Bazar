@@ -4,7 +4,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import AuthUser from './components/Auth/AuthUser';
-import { AuthProvider } from './components/Auth/AuthProvider.jsx';
+//import { AuthProvider } from './components/Auth/AuthProvider.jsx';
 import LandingPage from './pages/LandingPage';
 import SignUp from './pages/SignUp';
 
@@ -38,7 +38,7 @@ function App() {
   //   }
   // };
   return (
-    <AuthProvider>
+    // <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -50,7 +50,7 @@ function App() {
 
         </Routes>
       </Router>
-    </AuthProvider>
+   // </AuthProvider>
        
   );
 }

@@ -37,6 +37,12 @@ const Navbar = () => {
           <li className="nav-item">
                 <a className="nav-link" href="/contact" tabIndex="-1" aria-disabled="true">Contact</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/home" tabIndex="-1" aria-disabled="true">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/about" tabIndex="-1" aria-disabled="true">About</a>
+              </li>
           <LogoutButton />
 
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">

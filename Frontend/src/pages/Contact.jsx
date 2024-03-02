@@ -1,24 +1,19 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../components/Auth/AuthProvider.jsx';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import Footer from '../components/Footer.jsx';
 import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth.js'; 
 
-const About = () => {
+const Contact = () => {
   const navigate = useNavigate();
-  const { authenticated } = useAuth();
+  const { authenticated } = useAuth();  
 
   useEffect(() => {
-    console.log("from Contect apage "+authenticated);
+   
     if (!authenticated) {
-        
-      console.log("Time to redirect");
       navigate("/");
     }
-    else{
-        console.log("You have tocken");
-        }
   }, [authenticated, navigate]);
 
   return (
@@ -31,4 +26,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Contact;

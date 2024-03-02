@@ -34,6 +34,11 @@ app.use(express.static("public"))
 
 app.use(cookieParser());
 
+app.use(function(req, res, next){
+    console.log('%s %s', req.method, req.url);
+    next();
+  });
+
 // testing the server 
 
 app.get("/", (req, res) => {
@@ -42,9 +47,11 @@ app.get("/", (req, res) => {
 
 // routes import 
 import userRouter from './routes/user.routes.js'
+import couponRoute from './routes/coupon.routes.js'
 
 // routes declarations 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/coupon", couponRoute);
 
 
 
