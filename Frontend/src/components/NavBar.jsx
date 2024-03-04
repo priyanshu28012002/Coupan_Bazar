@@ -1,69 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import LogoutButton from './Logout.jsx'; // Import the LogoutButton component
-
-const SignUpButton = ({ onClick }) => {
-  return (
-    <button 
-     
-      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4 transition duration-300">
-      <Link to="/signup">SignUp</Link>
-    </button>
-  );
-};
-
-const LoginButton = () => {
-  return (
-    <button className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-      <Link to="/login">Login</Link>
-    </button>
-  );
-};
+import LogoutButton from './Logout.jsx'; 
+import SignUpButton from '../components/SignUpButton.jsx';
+import LoginButton from '../components/LoginButton.jsx'; 
 
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <SignUpButton  />
-          <LoginButton />
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            <img src="../../public/image.png" alt="" width="20" height="24" />
-          </a>
-          <a className="navbar-brand" href="/">Coupon Bazar </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <li className="nav-item">
-                <a className="nav-link" href="/contact" tabIndex="-1" aria-disabled="true">Contact</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/home" tabIndex="-1" aria-disabled="true">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/about" tabIndex="-1" aria-disabled="true">About</a>
-              </li>
-          <LogoutButton />
-
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {/* Check if other navbar items are visible */}
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="about">About</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/contact" tabIndex="-1" aria-disabled="true">Contact</a>
-              </li>
-            </ul>
-
-            {/* Check if LogoutButton is visible */}
-            <LogoutButton />
-          </div>
+       <div className="navbar bg-blue-500 p-4 flex justify-between items-center mt-0 ">
+        <div className="logo flex items-center">
+          <img src="public/image.png" alt="Logo" className="h-8 mr-2"/>
+          <span className="text-white text-lg font-semibold hidden sm:block">Coupon Bazar</span>
         </div>
-      </nav>
+        <div className="nav-links hidden sm:block">
+          <a href="/home" className="text-white mr-4">Home</a>
+          <a href="/about" className="text-white mr-4">About</a>
+          <a href="/contact" className="text-white mr-4">Contact</a>
+        </div>
+        <div className="user-actions hidden sm:block">
+          <a href="/login" className="text-white mr-2 ">Login</a>
+          <a href="/signup" className="text-white ml-4">Sign Up</a>
+        </div>
+        <div className="sm:hidden" onClick={toggleMobileMenu}>
+          <svg className="h-6 w-6 text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+
+          
+        </div>
+
+       
+      </div>
+      <div id="mobile-menu" className={`sm:hidden ${mobileMenuOpen ? '' : 'hidden'}`}>
+         <dir className="bg-blue-500 m-2 rounded-2 bg-opacity-100">
+         <div className="flex flex-col items-start mt-2">
+          <a href="/about" className="text-white mr-2 mb-2">Home</a>
+            <a href="/contact" className="text-white mr-2 mb-2">Contact</a>
+            <a href="/contact" className="text-white mr-2 mb-2">About</a>
+            <a href="/login" className="text-white mr-2 mb-2">Login</a>
+            <a href="/signup" className="text-white mr-2 mb-2">Sign Up</a>
+          </div>
+         </dir>
+        </div>
     </>
   );
 };

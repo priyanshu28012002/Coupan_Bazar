@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+import NavBar from '../components/NavBar.jsx';
+
 const SignUp = () => {
   const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
@@ -59,6 +61,9 @@ const SignUp = () => {
 
 
   return (
+    <>
+     <NavBar/>
+  
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="max-w-md mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
@@ -154,6 +159,7 @@ const SignUp = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

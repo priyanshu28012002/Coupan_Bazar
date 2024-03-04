@@ -6,7 +6,9 @@ import AuthUser from '../components/Auth/AuthUser.js'; // Import AuthUser
 //import { useAuth } from '../components/Auth/AuthProvider.jsx';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth.js';
-
+import ListCoupon from '../components/ListCoupon.jsx';
+import RenderCoupon from '../components/RenderCoupon.jsx';
+import CouponCard from '../components/CouponCard.jsx';
 
 const Home = () => {
   const { authenticated } = useAuth();
@@ -40,6 +42,8 @@ const Home = () => {
           <NavBar />
           <h1>Home Component</h1>
           <Link to="/about">Go to About</Link>
+          <RenderCoupon/>
+      <ListCoupon/>
           <Footer />
         </>
       )}

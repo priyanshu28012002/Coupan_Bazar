@@ -5,7 +5,10 @@ export default function Footer() {
     <div>
       
    
-    <footer class="site-footer">
+    {/* <footer class="footer">
+
+
+      <div className='bg-gray-900 text-cyan-50'>
       <div class="container">
       <div class="row">
       <div class="col-md-4 col-sm-6 col-xs-12">
@@ -22,23 +25,14 @@ export default function Footer() {
           <div class="col-xs-6 col-md-3">
             <h6>Categories</h6>
             <ul class="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-              <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-              <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+             
             </ul>
           </div>
 
           <div class="col-xs-6 col-md-3">
             <h6>Quick Links</h6>
             <ul class="footer-links">
-              <li><a href="http://scanfcode.com/about/">About Us</a></li>
-              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+             
             </ul>
           </div>
         </div>
@@ -62,7 +56,58 @@ export default function Footer() {
           </div>
         </div>
       </div>
-</footer>
+      </div>
+      
+</footer> */}
+
+
+    <footer className="bg-gray-900 text-gray-300 py-3 mt-2">
+      <div className="container mx-auto">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <img src="../../public/image.png" alt="Footer Image" class="footer-image"/>
+      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div>
+          
+            <h3 className="text-xl font-semibold mb-4">Coupon Bazar</h3>
+            <p className="text-sm">Coupon Bazar is your ultimate destination for finding the best deals and discounts on a wide range of products and services. We are committed to helping you save money while shopping online.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Categories</h3>
+            <ul className="text-sm">
+              <li><a href="#" className="hover:text-blue-500">Electronics</a></li>
+              <li><a href="#" className="hover:text-blue-500">Fashion</a></li>
+              <li><a href="#" className="hover:text-blue-500">Home & Garden</a></li>
+              <li><a href="#" className="hover:text-blue-500">Health & Beauty</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+            <ul className="text-sm">
+              <li><a href="#" className="hover:text-blue-500">About Us</a></li>
+              <li><a href="#" className="hover:text-blue-500">Contact Us</a></li>
+              <li><a href="#" className="hover:text-blue-500">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-blue-500">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Connect with Us</h3>
+            <ul className="text-sm">
+              <li><a href="#" className="hover:text-blue-500">Facebook</a></li>
+              <li><a href="#" className="hover:text-blue-500">Twitter</a></li>
+              <li><a href="#" className="hover:text-blue-500">Instagram</a></li>
+              <li><a href="#" className="hover:text-blue-500">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="mt-1 border-gray-400 pt-1 text-center">
+        <p className="text-sm">© 2024 Coupon Bazar. All rights reserved.</p>
+      </div>
+    </footer>
+    
+
+
  
 
     </div>

@@ -57,7 +57,7 @@ const Login = () => {
 
   return (
     <>
-    
+    <NavBar/>
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="max-w-md mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
