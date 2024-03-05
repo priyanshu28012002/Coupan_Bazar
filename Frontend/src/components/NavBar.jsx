@@ -19,32 +19,36 @@ const Navbar = () => {
           <span className="text-white text-lg font-semibold hidden sm:block">Coupon Bazar</span>
         </div>
         <div className="nav-links hidden sm:block">
-          <a href="/home" className="text-white mr-4">Home</a>
-          <a href="/about" className="text-white mr-4">About</a>
-          <a href="/contact" className="text-white mr-4">Contact</a>
+          
+          <Link to="/home" className="text-white mr-4">Home</Link>
+          <Link to="/about" className="text-white mr-4">About</Link>
+          <Link to="/contact" className="text-white mr-4">Contact Us</Link>
+          
         </div>
         <div className="user-actions hidden sm:block">
-          <a href="/login" className="text-white mr-2 ">Login</a>
-          <a href="/signup" className="text-white ml-4">Sign Up</a>
+        <Link to="/login" className="text-white mr-4">Login</Link>
+        <Link to="/signup" className="text-white mr-4">Sign Up</Link>
+          
         </div>
         <div className="sm:hidden" onClick={toggleMobileMenu}>
           <svg className="h-6 w-6 text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
-
           
-        </div>
+          </div>
 
        
       </div>
       <div id="mobile-menu" className={`sm:hidden ${mobileMenuOpen ? '' : 'hidden'}`}>
          <dir className="bg-blue-500 m-2 rounded-2 bg-opacity-100">
          <div className="flex flex-col items-start mt-2">
-          <a href="/about" className="text-white mr-2 mb-2">Home</a>
-            <a href="/contact" className="text-white mr-2 mb-2">Contact</a>
-            <a href="/contact" className="text-white mr-2 mb-2">About</a>
-            <a href="/login" className="text-white mr-2 mb-2">Login</a>
-            <a href="/signup" className="text-white mr-2 mb-2">Sign Up</a>
+         <Link to="/home" className="text-white mr-4">Home</Link>
+          <Link to="/about" className="text-white mr-4">About</Link>
+          <Link to="/contact" className="text-white mr-4">Contact Us</Link>
+          
+       
+        <Link to="/login" className="text-white mr-4">Login</Link>
+        <Link to="/signup" className="text-white mr-4">Sign Up</Link>
           </div>
          </dir>
         </div>

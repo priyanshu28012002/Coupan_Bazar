@@ -26,26 +26,77 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="bg-white py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-gray-800">Frequently Asked Questions (FAQ)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-700">How do I redeem a coupon?</h3>
-              <p className="text-lg text-gray-600 mb-6">
-                To redeem a coupon, simply click on the coupon code or offer link provided. This will take you to the merchant's website where you can complete your purchase and apply the coupon code at checkout.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-700">Are the coupons on Coupon Bazar verified?</h3>
-              <p className="text-lg text-gray-600 mb-6">
-                Yes, we strive to provide our users with only verified and up-to-date coupons. Our team regularly checks and updates the coupons to ensure their validity and accuracy.
-              </p>
-            </div>
-            {/* Add more FAQ items here */}
+      
+      <section class="team bg-white py-20">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Team</h2>
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+        <div class="bg-gray-200 p-8 rounded-lg shadow-md text-center">
+          <img src="https://twitter.com/Priyanshu_Sri_/photo" alt="Team Member 1" class="rounded-full mx-auto mb-4" />
+          <h3 class="text-xl font-bold mb-2">Priyanshu Srivastava</h3>
+          <p class="text-gray-700">Co-founder & CEO</p>
+          <div class="mt-4">
+            <a href="https://www.linkedin.com/in/pri008/" class="text-blue-500 hover:text-blue-600">LinkedIn</a>
+            <span class="mx-2">•</span>
+            <a href="" class="text-blue-500 hover:text-blue-600">Twitter</a>
           </div>
         </div>
-      </section>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+        <div class="bg-gray-200 p-8 rounded-lg shadow-md text-center">
+        <img
+  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStwyndMRj4HLr6pVsev8ixyKJ9jja0Nn3mRLIVM27zUIDECISOrRSItNRCPAWgagkFaBU&usqp=CAU"
+  alt="Team Member 2"
+  className="rounded-full mx-auto mb-4"
+  style={{ width: '100px', height: '100px' }}
+/>
+     
+         
+          <h3 class="text-xl font-bold mb-2">Jane Smith</h3>
+          <p class="text-gray-700">Co-founder & CTO</p>
+          <div class="mt-4">
+            <a href="#" class="text-blue-500 hover:text-blue-600">LinkedIn</a>
+            <span class="mx-2">•</span>
+            <a href="#" class="text-blue-500 hover:text-blue-600">Twitter</a>
+          </div>
+        </div>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+        <div class="bg-gray-200 p-8 rounded-lg shadow-md text-center">
+
+        <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz-XvQodADgrd9QjhTYJctkJ_tgLBCfMLIkEmxdslx3ZexLXSgqmvBeUEUyKuqqxHgm_E&usqp=CAU"
+        alt="Team Member 3"
+        className="rounded-full mx-auto mb-4"
+        style={{ width: '100px', height: '100px' }}
+      />
+
+         <h3 class="text-xl font-bold mb-2">Emily Johnson</h3>
+          <p class="text-gray-700">Marketing Manager</p>
+          <div class="mt-4">
+            <a href="#" class="text-blue-500 hover:text-blue-600">LinkedIn</a>
+            <span class="mx-2">•</span>
+            <a href="#" class="text-blue-500 hover:text-blue-600">Twitter</a>
+          </div>
+        </div>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+        <div class="bg-gray-200 p-8 rounded-lg shadow-md text-center">
+          <img src="team-member4.jpg" alt="Team Member 4" class="rounded-full mx-auto mb-4" />
+          <h3 class="text-xl font-bold mb-2">Michael Brown</h3>
+          <p class="text-gray-700">Lead Developer</p>
+          <div class="mt-4">
+            <a href="#" class="text-blue-500 hover:text-blue-600">LinkedIn</a>
+            <span class="mx-2">•</span>
+            <a href="#" class="text-blue-500 hover:text-blue-600">Twitter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
       <Footer />
     </>
   );
