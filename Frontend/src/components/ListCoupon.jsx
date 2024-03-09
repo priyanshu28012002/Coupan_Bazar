@@ -21,6 +21,7 @@ const user = getUserDetails();
         expiryDate: '',
         offer: '',
         discountType: '',
+        category: '',
         ownerId: user._id, 
       });
       
@@ -54,6 +55,7 @@ const user = getUserDetails();
             expiryDate: '',
             offer: '',
             discountType: '',
+            category: '',
             ownerId: user._id,
           });
         } catch (error) {
@@ -97,7 +99,21 @@ const user = getUserDetails();
     <option value="percentage">Percentage</option>
     <option value="fixed">Fixed</option>
   </select>
+
 </div>
+
+<div className="mb-4">
+          <label htmlFor="category" className="block text-gray-700">Category:</label>
+          <select id="category" name="category" value={formData.category} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+            <option value="">Select Category</option>
+            <option value="healthCare">Healthcare</option>
+            <option value="electronics">Electronics</option>
+            <option value="fashion">Fashion</option>
+            <option value="food">Food</option>
+            <option value="beauty">Beauty</option>
+            <option value="books">Books</option>
+          </select>
+        </div>
         <button type="submit" className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600">Add Coupon</button>
       </form>
     </div>

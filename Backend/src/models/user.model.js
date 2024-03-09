@@ -47,8 +47,18 @@ const userSchema = new Schema(
         },
         refreshToken: {
             type: String
-        }
-
+        },
+        cart: {
+            type: [{
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'Coupon'
+            }],
+            default: []
+          },
+          testimonial: {
+            type: String,
+            default: ''
+          }
     },
     {
         timestamps: true

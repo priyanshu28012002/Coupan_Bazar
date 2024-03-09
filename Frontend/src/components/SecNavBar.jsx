@@ -1,29 +1,3 @@
-// import React from 'react';
-
-// const SecondaryNavBar = () => {
-//   return (
-//     <div className="bg-gray-200 py-auto">
-//       <div className="bg-gray-200 py-auto">
-//       <div className="container mx-auto flex flex-wrap justify-center">
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Healthcare</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Electronics</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Fashion</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Food</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Home Decor</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Beauty</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Sports</button>
-//         <button className="mx-4 my-2 px-4 py-2 bg-white text-gray-700 font-medium rounded-md shadow-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100">Books</button>
-//       </div>
-//     </div>
-//     </div>
-
-    
-//   );
-// };
-
-// export default SecondaryNavBar;
-
-
 
 import React from 'react';
 

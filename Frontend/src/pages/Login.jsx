@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthUser from '../components/Auth/AuthUser.js'
-import ProductPage from '../components/User/ProductPage.jsx';
+
 import SecNavBar from '../components/SecNavBar.jsx';
 import Footer from '../components/Footer.jsx';
 import GridContainer from '../components/HomePage/Container.jsx';
@@ -119,36 +119,8 @@ const Login = () => {
         </form>
       </div>
     </div>
-    Product page
-    <ProductPage/>
-    Home page
-
-
-<NavBar/>
-<SecNavBar/>
-<div className="container mx-auto py-8">
-        <h1 className="text-3xl font-bold mb-4"> <strong> Top Deal of Dat</strong></h1>
-        <div className="flex justify-between items-start">
-          <div className="bg-white shadow-md p-8 rounded-lg w-full">
-            <TopDealSlider />
-          </div>
-        </div>
-        </div>
-
-<GridContainer/>
-<div className="container mx-auto py-8">
-        <h1 className="text-3xl font-bold mb-4"> <strong> Recommendation</strong></h1>
-        <div className="flex justify-between items-start">
-          <div className="bg-white shadow-md p-8 rounded-lg w-full">
-            <RecommendationSlider />
-          </div>
-        </div>
-        </div>
-<Footer/>
-
-
-
-
+   
+  
 
 
     

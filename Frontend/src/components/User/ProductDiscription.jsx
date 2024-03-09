@@ -39,7 +39,7 @@ const ProductDescription = ({ product }) => {
                     <p><strong>Subscription:</strong> Get 10% of profit on transaction. Subscribe at $100/month</p>
                     <div className="bg-white shadow-md p-8 rounded-lg w-full mt-4">
                         <h2 className="text-xl font-semibold mb-4">Purchase Options</h2>
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4 w-full">Buy Now</button>
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4 w-full">Comming soon</button>
                         <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">Add to Cart</button>
                     </div>
                 </div>
@@ -48,11 +48,7 @@ const ProductDescription = ({ product }) => {
 
             </div>
 
-            {/* Terms and Conditions */}
-
-
-            {/* Additional Information (on large screens) */}
-
+        
 
 
         </div>

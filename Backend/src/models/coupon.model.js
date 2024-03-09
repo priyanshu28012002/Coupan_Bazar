@@ -48,8 +48,22 @@ const couponSchema = new Schema(
         default: '',
     },
     ownerId: {
-        type: String,
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    topDeal:{
+      type:Boolean,
+      default: false,
+    },
+    monthlyTopSeller:{
+      type:Boolean,
+      default: false,
+    },
+    category: {
+      type: String,
+      enum: ['healthCare', 'electronics', 'fashion', 'food', 'beauty', 'books'],
+      required: true
     },
   },
   {

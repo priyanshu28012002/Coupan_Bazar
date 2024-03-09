@@ -64,7 +64,14 @@ const CouponSlider = () => {
   ];
 
   return (
-    <div className="coupon-slider-container">
+    <>
+    
+    
+    <div className="container mx-auto py-8">
+        <h1 className="text-3xl font-bold mb-4"> <strong>Related Discount Coupon</strong></h1>
+        <div className="flex justify-between items-start">
+          <div className="bg-white shadow-md p-8 rounded-lg w-full">
+          <div className="coupon-slider-container">
       <Slider {...settings}>
         {couponData.map((coupon, index) => (
           <div key={index}>
@@ -73,6 +80,13 @@ const CouponSlider = () => {
         ))}
       </Slider>
     </div>
+          </div>
+
+
+        </div>
+      </div>
+    </>
+   
   );
 };
 
@@ -122,8 +136,12 @@ const RecommendationSlider = () => {
   ];
 
   return (
-    <div className="recommendation-slider-container">
-           <h1 className="text-3xl font-bold mb-4"> <strong> Recommendation</strong></h1>
+    <>
+    <div className="container mx-auto py-8">
+        <h1 className="text-3xl font-bold mb-4"> <strong> Recommendation</strong></h1>
+        <div className="flex justify-between items-start">
+          <div className="bg-white shadow-md p-8 rounded-lg w-full">
+          <div className="recommendation-slider-container">
       <Slider {...settings}>
         {recommendationData.map((recommendation, index) => (
           <div key={index}>
@@ -132,6 +150,12 @@ const RecommendationSlider = () => {
         ))}
       </Slider>
     </div>
+          </div>
+        </div>
+        </div>
+    
+    </>
+    
   );
 };
 
@@ -179,15 +203,25 @@ const TopDealSlider = () => {
   ];
 
   return (
-    <div className="top-deal-slider-container">
-      <Slider {...settings}>
-        {topDealData.map((deal, index) => (
-          <div key={index}>
-            <CouponCard {...deal} />
+    <>
+      <div className="container mx-auto py-8">
+        <h1 className="text-3xl font-bold mb-4"> <strong> Top Deal of Dat</strong></h1>
+        <div className="flex justify-between items-start">
+          <div className="bg-white shadow-md p-8 rounded-lg w-full">
+            <div className="top-deal-slider-container">
+              <Slider {...settings}>
+                {topDealData.map((deal, index) => (
+                  <div key={index}>
+                    <CouponCard {...deal} />
+                  </div>
+                ))}
+              </Slider>
+            </div>
           </div>
-        ))}
-      </Slider>
-    </div>
+        </div>
+      </div>
+
+    </>
   );
 };
 

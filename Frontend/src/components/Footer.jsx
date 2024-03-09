@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -79,6 +80,20 @@ export default function Footer() {
               <li><a href="#" className="hover:text-blue-500">Fashion</a></li>
               <li><a href="#" className="hover:text-blue-500">Home & Garden</a></li>
               <li><a href="#" className="hover:text-blue-500">Health & Beauty</a></li>
+
+              
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Testing</h3>
+            <ul className="text-sm">
+             
+          <Link to="/home" className="text-white mr-4">Home</Link>
+          <Link to="/" className="text-white mr-4">Landing Page</Link>
+          <Link to="/productDescription" className="text-white mr-4">ProductDiscription</Link>
+          <Link to="/cart" className="text-white mr-4">Cart</Link>
+
+              
             </ul>
           </div>
           <div>

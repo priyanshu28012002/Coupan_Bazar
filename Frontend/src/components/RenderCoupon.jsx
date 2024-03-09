@@ -49,9 +49,9 @@ import axios from 'axios';
 import CouponCard from '../components/CouponCard.jsx'; // Assuming you have a CouponCard component
 
 const CouponList = () => {
-       const coupon = {
+       const couponCode = {
         companyName: 'Example Company',
-        couponCode: 'EXAMPLE123',
+        couponCode: 'EXAMPLE123567',
         urlForDiscount: 'https://example.com/discount',
         minPrice: 50,
         expiryDate: '2024-12-31',
@@ -81,7 +81,7 @@ const CouponList = () => {
         <CouponCard key={coupon._id} {...coupon} />
         
       ))}
-      <CouponCard{...coupon}/>
+      <CouponCard{...couponCode}/>
     </div>
   );
 };

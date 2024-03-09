@@ -11,10 +11,9 @@ import RenderCoupon from '../components/RenderCoupon.jsx';
 import CouponCard from '../components/CouponCard.jsx';
 import { CouponSlider, TopDealSlider, RecommendationSlider } from '../components/CouponSlider.jsx';
 import SecNavBar from '../components/SecNavBar.jsx';
-import GridContainer from '../components/HomePage/Container.jsx';
 
 
-const Home = () => {
+const ListCouponPage = () => {
   const { authenticated } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -42,15 +41,16 @@ const Home = () => {
       ) : (
         <>
           {/* <h1>Welcome, {userData && userData.fullName}</h1>
-          <p>{userData && userDat a.email}</p> */}
+          <p>{userData && userData.email}</p> */}
           <NavBar />
           <SecNavBar/>
-          <TopDealSlider />
-          
-          <GridContainer/>
 
-          <RecommendationSlider />
+          
+      <ListCoupon/>
+      <RecommendationSlider />
          
+    <TopDealSlider />
+        
           <Footer />
         </>
       )}
@@ -58,5 +58,5 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ListCouponPage;
 

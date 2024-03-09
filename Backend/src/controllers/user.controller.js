@@ -72,7 +72,8 @@ const registerUser = asyncHandler( async (req, res) => {
         password,
         username: username.toLowerCase(),
         gender,
-        contactNo
+        contactNo,
+        
     })
     console.log(user);
 
@@ -154,6 +155,7 @@ const loginUser = asyncHandler(async (req, res) =>{
     )
 
 })
+
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
         const user = await User.findById(userId)
