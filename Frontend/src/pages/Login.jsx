@@ -9,57 +9,54 @@ import SecNavBar from '../components/SecNavBar.jsx';
 import Footer from '../components/Footer.jsx';
 import GridContainer from '../components/HomePage/Container.jsx';
 import { CouponSlider, TopDealSlider, RecommendationSlider } from '../components/CouponSlider.jsx';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../features/user/userAuthSlice.js';
 
 const Login = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [loginError, setLoginError] = useState(null);
   const history = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const { setToken } = AuthUser();
-  const  handleLogin = () => {
-    // Your login logic here
-    const credentials = {
+
+  const handleLogin = (e)=> { // Adjust handleLogin to accept dispatch
+    e.preventDefault();
+  
+    setLoading(true);
+    setLoginError(null);
+    const userCredentials = {
       username,
       password,
       email
     };
-    fetch('/api/v1/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        console.log('User logged in successfully:', data.data);
-        // Redirect to home page or perform any other action upon successful login
-        // save the user ant its token in the session storage\
-        console.log('User logged in successfully'+ data.data.accessToken);
-        setToken(data.data.user, data.data.accessToken);
-        
-       // history("/home", { userData: data.data });
-       history("/home");
-      } else {
-        console.error('User login failed:', data.message);
-        // Display error message to the user
-        // Example:
-        // setError(data.message);
-      }
-    })
-    .catch(error => {
-      console.error('Error logging in user:', error);
-      // Handle error here
-      // Example:
-      // setError('An error occurred while logging in. Please try again later.');
-    });
+    console.log(userCredentials);
+  
+    // Dispatch the loginUser async thunk
+    dispatch(loginUser(userCredentials))
+      .unwrap() // Unwrap the promise to access the fulfilled value
+      .then((userData) => {
+        // Handle successful login
 
-    
+        console.log('Login successful!', userData);
+        history("/home");
+        //setLoading(false);
+        // Navigate to the home page or perform other actions upon successful login
+      })
+      .catch((error) => {
+        // Handle login failure
+        setLoginError(error.message);
+        setEmail("");
+        setPassword("");
+        setLoading(false);
+        console.error('Login failed:', error);
+        // Display error message to the user or perform other actions upon login failure
+      });
   };
-
   return (
     <>
     <NavBar/>
@@ -103,7 +100,7 @@ const Login = () => {
 
 
           <div className=' error text-red-500 font-bold'>
-            
+          {loginError && <div className="text-danger">{loginError}</div>}
           </div>
           <div className='text-black'>
         
@@ -114,7 +111,7 @@ const Login = () => {
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
             onClick={handleLogin}
           >
-            Login
+           {loading ? "Please Wait..." : "LOGIN"}
           </button>
         </form>
       </div>

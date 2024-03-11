@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductDiscription from '../components/User/ProductDiscription.jsx';
+import { useNavigate } from 'react-router-dom';
 
 import NavBar from '../components/NavBar.jsx';
 import Footer from '../components/Footer.jsx';
 import { CouponSlider, TopDealSlider, RecommendationSlider } from '../components/CouponSlider.jsx';
+import {useSelector} from 'react-redux';
 
 
 const ProductPage = () => {
   // Assuming 'product' contains the product details
+  const navigate = useNavigate();
+  useEffect(() => {
+    
+   
+    if (!isAuthenticated) {
+      navigate("/login");
+    } else {
+      const fetchUserData = async () => {
+        const user = getUserDetails();
+        setUserData(user);
+        setLoading(false); 
+      };
+      fetchUserData();
+    }
+  }, []);
+
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
   const product = {
     "_id": "65e3a59fde3e26912b3cdff0",
     "companyName": "Q Company",
@@ -26,6 +46,7 @@ const ProductPage = () => {
   };
 
   return (
+
     <div>
       <NavBar />
 

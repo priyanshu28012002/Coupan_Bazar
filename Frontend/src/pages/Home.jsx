@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import Footer from '../components/Footer.jsx';
-import AuthUser from '../components/Auth/AuthUser.js'; // Import AuthUser
-//import { useAuth } from '../components/Auth/AuthProvider.jsx';
-import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth.js';
-import ListCoupon from '../components/ListCoupon.jsx';
-import RenderCoupon from '../components/RenderCoupon.jsx';
-import CouponCard from '../components/CouponCard.jsx';
+
+import { useNavigate } from 'react-router-dom'; 
+
 import { CouponSlider, TopDealSlider, RecommendationSlider } from '../components/CouponSlider.jsx';
 import SecNavBar from '../components/SecNavBar.jsx';
 import GridContainer from '../components/HomePage/Container.jsx';
+import {useSelector, useDispatch} from 'react-redux';
 
 
 const Home = () => {
-  const { authenticated } = useAuth();
+  
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
-  const { getUserDetails } = AuthUser();
+  
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const user = useSelector(state => state.auth.userData);
   useEffect(() => {
+
     
    
-    if (!authenticated) {
+    if (!isAuthenticated) {
       navigate("/login");
     } else {
       const fetchUserData = async () => {
-        const user = getUserDetails();
+        console.log("Fetching user data",user)
         setUserData(user);
         setLoading(false); 
       };
@@ -42,12 +41,12 @@ const Home = () => {
       ) : (
         <>
           {/* <h1>Welcome, {userData && userData.fullName}</h1>
-          <p>{userData && userDat a.email}</p> */}
+          <p>{userData && userData.email}</p> */}
           <NavBar />
           <SecNavBar/>
           <TopDealSlider />
           
-          <GridContainer/>
+          {/* <GridContainer/> */}
 
           <RecommendationSlider />
          

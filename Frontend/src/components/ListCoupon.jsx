@@ -3,13 +3,18 @@
 import AuthUser from '../components/Auth/AuthUser.js';
 import React, { useState } from 'react';
 import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+
+
 
 
 const ListCoupon = () =>{
  
-const { getUserDetails } = AuthUser();
 
-const user = getUserDetails();
+  const user = useSelector(state => state.auth.userData);
+// const { getUserDetails } = AuthUser();
+
+// const user = getUserDetails();
     
 
 

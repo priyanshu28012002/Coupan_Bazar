@@ -1,6 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js"
 import { Coupon } from "../models/coupon.model.js"
+import { User } from "../models/user.model.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import mongoose from "mongoose";
 
@@ -85,7 +86,7 @@ const showCoupons = asyncHandler(async (req, res) => {
             {
                 $match: {
                     category: category,
-                    status: "available"
+                   // status: "available"
                 }
             },
             {
@@ -101,6 +102,7 @@ const showCoupons = asyncHandler(async (req, res) => {
             },
             {
                 $project: {
+                    _id:1,
                     companyName: 1,
                     status: 1,
                     urlForDiscount: 1,
@@ -118,7 +120,7 @@ const showCoupons = asyncHandler(async (req, res) => {
             {
                 $match: {
                     category: category,
-                    status: "available",
+                   // status: "available",
                     topDeal:true,
                 }
             },
@@ -135,6 +137,7 @@ const showCoupons = asyncHandler(async (req, res) => {
             },
             {
                 $project: {
+                    _id:1,
                     companyName: 1,
                     status: 1,
                     urlForDiscount: 1,
@@ -169,23 +172,163 @@ const showCoupons = asyncHandler(async (req, res) => {
     }
 });
 
+// const showUserCoupons = asyncHandler(async (req, res) => {
+//     try {
+//         // Extract the user id from the request body
+//       //  const id = req.params.id;
+//         const {id}  = req.body;
+//         console.log("the value is  "+id);
+//         // Check if user id exists
+//         if (!id) {
+//             return res.status(400).json({
+//                 success: false,
+//                 error: "User id is required",
+//             });
+//         }
+
+//         // Convert the id string to an ObjectId
+//         const objectId = mongoose.Types.ObjectId.createFromHexString(id);
+        
+//         // Construct the aggregation pipelines to filter coupons by ownerId
+//         const pipelineAllUserCoupon = [
+//             {
+//                 $match: {
+//                     ownerId: objectId ,// Fetch coupons where the user is either the owner or the buyer
+//                 }
+//             },
+//         ];
+
+//         const pipelineSells = [
+//             {
+//                 $match: {
+//                     ownerId: objectId,
+//                     status: 'sold'
+//                 }
+//             },
+//         ];
+
+//         const pipelineBuys = [
+//             {
+//                 $match: {
+//                     buyerId: objectId,
+//                     status: 'sold'
+//                 }
+//             },
+//         ];
+//         const userId = objectId;
+//         const pipelineInCart = [
+//             // Match stage to find the user by ID
+//             {
+//                 $match: {
+//                     _id: userId
+//                 }
+//             },
+//             // Lookup stage to populate the cart field
+//             {
+//                 $lookup: {
+//                     from: "coupons", // Assuming the collection name is "coupons"
+//                     localField: "cart",
+//                     foreignField: "_id",
+//                     as: "cartCoupons"
+//                 }
+//             },
+//             // Unwind stage to deconstruct the cartCoupons array
+//             {
+//                 $unwind: "$cartCoupons"
+//             },
+//             // Lookup stage to join with the users collection to get the owner's full name
+//             {
+//                 $lookup: {
+//                     from: "users", // Name of the User collection
+//                     localField: "cartCoupons.ownerId",
+//                     foreignField: "_id",
+//                     as: "owner"
+//                 }
+//             },
+//             // Unwind stage to deconstruct the owner array
+//             {
+//                 $unwind: "$owner"
+//             },
+//             // Project stage to include only the relevant fields
+//             {
+//                 $project: {
+//                     _id: "$cartCoupons._id",
+//                     companyName: "$cartCoupons.companyName",
+//                     status: "$cartCoupons.status",
+//                     urlForDiscount: "$cartCoupons.urlForDiscount",
+//                     minPrice: "$cartCoupons.minPrice",
+//                     expiryDate: "$cartCoupons.expiryDate",
+//                     offer: "$cartCoupons.offer",
+//                     discountType: "$cartCoupons.discountType",
+//                     category: "$cartCoupons.category",
+//                     ownerId: "$cartCoupons.ownerId",
+//                     // Add the owner's full name to the projection
+//                     ownerFullName: "$owner.fullName"
+//                 }
+//             }
+//         ];
+
+//         // Execute the aggregation pipelines to fetch coupons
+//         const allUserCoupons = await Coupon.aggregate(pipelineAllUserCoupon);
+//         const soldCoupons = await Coupon.aggregate(pipelineSells);
+//         const boughtCoupons = await Coupon.aggregate(pipelineBuys);
+//         const inCart = await User.aggregate(pipelineInCart);
+        
+//         // Combine the results of all pipelines into a single data object
+//         const data = {
+//             allUserCoupons: allUserCoupons,
+//             sold: soldCoupons,
+//             buys: boughtCoupons,
+//             cart: inCart,
+//         };
+
+//         // Return the fetched coupons in the response
+//         return res.status(200).json({
+//             success: true,
+//             data: data,
+//             message: "Coupons fetched successfully",
+//         });
+
+//     } catch (error) {
+//         // Handle errors
+//         console.error("Error fetching user coupons:", error);
+//         return res.status(500).json({
+//             success: false,
+//             error: "Internal server error",
+//         });
+//     }
+// });
+
+
+
+
 const showUserCoupons = asyncHandler(async (req, res) => {
     try {
-        // Extract the user id from the request body
-        const { id } = req.body;
-        
-        // Check if user id exists
-        if (!id) {
+        // Extract the user name from the request body
+        const  username  = req.headers.username;
+        console.log(req.headers.username);
+        console.log(typeof username)
+        // Check if user name exists
+        if (!username) {
             return res.status(400).json({
                 success: false,
-                error: "User id is required",
+                error: "User name is required",
             });
         }
 
-        // Convert the id string to an ObjectId
-        const objectId = mongoose.Types.ObjectId.createFromHexString(id);
+        // Find the user by their name
+        const user = await User.findOne({ username: username });
         
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                error: "User not found",
+            });
+        }
+
         // Construct the aggregation pipelines to filter coupons by ownerId
+        const objectId = user._id;
         const pipelineAllUserCoupon = [
             {
                 $match: {
@@ -212,18 +355,74 @@ const showUserCoupons = asyncHandler(async (req, res) => {
             },
         ];
 
+        const userId = objectId;
+        const pipelineInCart = [
+            // Match stage to find the user by ID
+            {
+                $match: {
+                    _id: userId
+                }
+            },
+            // Lookup stage to populate the cart field
+            {
+                $lookup: {
+                    from: "coupons", // Assuming the collection name is "coupons"
+                    localField: "cart",
+                    foreignField: "_id",
+                    as: "cartCoupons"
+                }
+            },
+            // Unwind stage to deconstruct the cartCoupons array
+            {
+                $unwind: "$cartCoupons"
+            },
+            // Lookup stage to join with the users collection to get the owner's full name
+            {
+                $lookup: {
+                    from: "users", // Name of the User collection
+                    localField: "cartCoupons.ownerId",
+                    foreignField: "_id",
+                    as: "owner"
+                }
+            },
+            // Unwind stage to deconstruct the owner array
+            {
+                $unwind: "$owner"
+            },
+            // Project stage to include only the relevant fields
+            {
+                $project: {
+                    _id: "$cartCoupons._id",
+                    companyName: "$cartCoupons.companyName",
+                    status: "$cartCoupons.status",
+                    urlForDiscount: "$cartCoupons.urlForDiscount",
+                    minPrice: "$cartCoupons.minPrice",
+                    expiryDate: "$cartCoupons.expiryDate",
+                    offer: "$cartCoupons.offer",
+                    discountType: "$cartCoupons.discountType",
+                    category: "$cartCoupons.category",
+                    ownerId: "$cartCoupons.ownerId",
+                    // Add the owner's full name to the projection
+                    ownerFullName: "$owner.fullName"
+                }
+            }
+        ];
+
         // Execute the aggregation pipelines to fetch coupons
         const allUserCoupons = await Coupon.aggregate(pipelineAllUserCoupon);
         const soldCoupons = await Coupon.aggregate(pipelineSells);
         const boughtCoupons = await Coupon.aggregate(pipelineBuys);
+        const inCart = await User.aggregate(pipelineInCart);
         
         // Combine the results of all pipelines into a single data object
         const data = {
-            all: allUserCoupons,
-            sells: soldCoupons,
+            allUserCoupons: allUserCoupons,
+            sold: soldCoupons,
             buys: boughtCoupons,
+            cart: inCart,
         };
-
+        console.log(data);
+        console.log("data send Successful");
         // Return the fetched coupons in the response
         return res.status(200).json({
             success: true,
@@ -240,6 +439,7 @@ const showUserCoupons = asyncHandler(async (req, res) => {
         });
     }
 });
+
 
 // A step-by-step algorithm for the `showUserCartCoupon` function:
 
@@ -276,9 +476,50 @@ const showUserCartCoupon = asyncHandler(async (req, res) => {
         }
 
         // Convert the user ID string to an ObjectId
-        const userId = mongoose.Types.ObjectId(id);
+        //const objectId = mongoose.Types.ObjectId.createFromHexString(id);
+        const userId = mongoose.Types.ObjectId.createFromHexString(id);
         
-        // Aggregation pipeline to retrieve user's cart coupons
+        // // Aggregation pipeline to retrieve user's cart coupons
+        // const pipeline = [
+        //     // Match stage to find the user by ID
+        //     {
+        //         $match: {
+        //             _id: userId
+        //         }
+        //     },
+        //     // Lookup stage to populate the cart field
+        //     {
+        //         $lookup: {
+        //             from: "coupons", // Assuming the collection name is "coupons"
+        //             localField: "cart",
+        //             foreignField: "_id",
+        //             as: "cartCoupons"
+        //         }
+        //     },
+        //     // Unwind stage to deconstruct the cartCoupons array
+        //     {
+        //         $unwind: "$cartCoupons"
+        //     },
+        //     // Project stage to include only the relevant fields
+        //     {
+        //         $project: {
+        //             _id: "$cartCoupons._id",
+        //             companyName: "$cartCoupons.companyName",
+        //             status: "$cartCoupons.status",
+        //             urlForDiscount: "$cartCoupons.urlForDiscount",
+        //             minPrice: "$cartCoupons.minPrice",
+        //             expiryDate: "$cartCoupons.expiryDate",
+        //             offer: "$cartCoupons.offer",
+        //             discountType: "$cartCoupons.discountType",
+        //             category: "$cartCoupons.category",
+        //             ownerId: "$cartCoupons.ownerId",
+        //             // Add a projection to include the owner's full name
+        //             ownerFullName: "$cartCoupons.owner.fullName"
+        //         }
+        //     }
+        // ];
+
+
         const pipeline = [
             // Match stage to find the user by ID
             {
@@ -299,6 +540,19 @@ const showUserCartCoupon = asyncHandler(async (req, res) => {
             {
                 $unwind: "$cartCoupons"
             },
+            // Lookup stage to join with the users collection to get the owner's full name
+            {
+                $lookup: {
+                    from: "users", // Name of the User collection
+                    localField: "cartCoupons.ownerId",
+                    foreignField: "_id",
+                    as: "owner"
+                }
+            },
+            // Unwind stage to deconstruct the owner array
+            {
+                $unwind: "$owner"
+            },
             // Project stage to include only the relevant fields
             {
                 $project: {
@@ -312,11 +566,12 @@ const showUserCartCoupon = asyncHandler(async (req, res) => {
                     discountType: "$cartCoupons.discountType",
                     category: "$cartCoupons.category",
                     ownerId: "$cartCoupons.ownerId",
-                    // Add a projection to include the owner's full name
-                    ownerFullName: "$cartCoupons.owner.fullName"
+                    // Add the owner's full name to the projection
+                    ownerFullName: "$owner.fullName"
                 }
             }
         ];
+        
 
         // Execute the aggregation pipeline
         const cartCoupons = await User.aggregate(pipeline);
@@ -350,15 +605,18 @@ const showUserCartCoupon = asyncHandler(async (req, res) => {
 const buyCoupon = asyncHandler(async (req, res) => {
     try {
       // Step 1: Extract the id from the request body
-      const { id } = req.body;
-  
+      const { couponId, userId } = req.body;
+      console.log(couponId, userId);
+   
       // Step 2: Convert id to ObjectId
-      const objectId = mongoose.Types.ObjectId.createFromHexString(id);
+     
+      const couponObjectId = mongoose.Types.ObjectId.createFromHexString(couponId);
+      const userObjectId = mongoose.Types.ObjectId.createFromHexString(userId);
   
       // Step 3: Update coupon status to "sold"
       const updatedCoupon = await Coupon.findOneAndUpdate(
-        { _id: objectId },
-        { $set: { status: "sold", buyerId: objectId, sellDate: new Date() } },
+        { _id: couponObjectId },
+        { $set: { status: "sold", buyerId: userObjectId, sellDate: new Date() } },
       );
   
       if (!updatedCoupon) {
@@ -384,12 +642,76 @@ const buyCoupon = asyncHandler(async (req, res) => {
       });
     }
   });
+
+
+//   the step-by-step algorithm for adding a coupon to the user's cart:
+
+//   Extract the userId and couponId from the request body: Retrieve both the userId and couponId parameters from the request body.
   
+//   Convert userId to ObjectId: Use mongoose.Types.ObjectId.createFromHexString() to convert the userId string to an ObjectId.
+  
+//   Find the user by userId: Use the User model to find the user based on the userId obtained in step 2.
+  
+//   Add couponId to the user's cart: Push the couponId into the cart array of the user obtained in step 3.
+  
+//   Save the updated user: Save the user object after updating the cart.
+  
+//   Handle success and errors: If the operation is successful, return a success response. If there are any errors, handle them appropriately and return an error response.
+  
+
+
+const addToCart = asyncHandler(async (req, res) => {
+    try {
+      // Step 1: Extract userId and couponId from the request body
+      const { couponId, userId } = req.body;
+   
+      // Step 2: Convert id to ObjectId
+     
+      const couponObjectId = mongoose.Types.ObjectId.createFromHexString(couponId);
+      const userObjectId = mongoose.Types.ObjectId.createFromHexString(userId);
+  
+  
+      // Step 3: Find the user by userId
+      const user = await User.findById(userObjectId);
+  
+      if (!user) {
+        // If no user found, return an error response
+        return res.status(404).json({
+          success: false,
+          error: "User not found"
+        });
+      }
+  
+      // Step 4: Add couponId to the user's cart
+      user.cart.push(couponObjectId);
+  
+      // Step 5: Save the updated user
+      await user.save();
+  
+      // Step 6: Handle success
+      return res.status(200).json({
+        success: true,
+        message: "Coupon added to cart successfully",
+        data: user
+      });
+    } catch (error) {
+      // Step 6: Handle errors
+      console.error("Error adding coupon to cart:", error);
+      return res.status(500).json({
+        success: false,
+        error: "Internal server error"
+      });
+    }
+  });
+
+  
+
 export {
     listCoupon,
     coupons,
     showCoupons,
     showUserCoupons,
     showUserCartCoupon,
-    buyCoupon
+    buyCoupon,
+    addToCart
 }

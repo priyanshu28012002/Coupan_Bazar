@@ -1,10 +1,10 @@
 import React from 'react';
-import CouponCard from '../CouponCard'; // Assuming you have a CouponCard component
+import {CouponCard} from '../CouponCard'; // Assuming you have a CouponCard component
 
 
 const GridContainer = () => {
     
-
+    
     const couponData = [
         { companyName: "Company 1", price: "$10", offer: "50% off" },
         { companyName: "Company 2", price: "$15", offer: "20% off" },

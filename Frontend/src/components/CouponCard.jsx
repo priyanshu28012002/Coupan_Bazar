@@ -1,6 +1,71 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
-const CouponCard = ({ companyName, couponCode, urlForDiscount, minPrice, expiryDate, offer, discountType, imageUrl }) => {
+const CouponCard = ({ _id, companyName, couponCode, urlForDiscount, minPrice, expiryDate, offer, discountType, imageUrl }) => {
+  const userId = useSelector(state => state.auth.userData._id);
+  const couponId = _id
+
+  console.log(userId, couponId);
+
+
+  const buyFunction = async (userId, couponId) => {
+    try {
+      const response = await axios.post('/api/v1/coupon/user-coupon-buy', {
+        userId: userId,
+        couponId: couponId
+      });
+
+      console.log('Buy API  successful:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error making Buy API call:', error);
+      throw error;
+    }
+  };
+
+  
+  const addToCartFunction = async (userId, couponId) => {
+    try {
+      const response = await axios.post('/api/v1/coupon/user-coupon-addToCart', {
+        userId: userId,
+        couponId: couponId
+      });
+
+      console.log(' API To Add To cart call successful:', response.data);
+      return response.data;
+      
+    //   const config = {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //         'username': 'alla'
+    //     },
+    //     data: {},
+        
+    // }
+    //   const response = await axios.get('/api/v1/coupon/user-coupons',
+    //   config
+    //    );
+
+    //   console.log('  check pai call API To Add To cart call successful:', response.data);
+    //   return response.data;
+
+
+    } catch (error) {
+      console.error('Error making In Add To cart API call:', error);
+      throw error;
+    }
+  };
+
+  const buyHandleClick = () => {
+    
+    buyFunction(userId, couponId);
+  };
+  const AddToCartHandleClick = ()=>{
+    addToCartFunction(userId, couponId);
+  }
+  
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-lg flex opacity-75 hover:bg-blue-400 ">
       <div className="w-1/2 opacity-75 hover:opacity-100 rounded-lg">
@@ -17,10 +82,15 @@ const CouponCard = ({ companyName, couponCode, urlForDiscount, minPrice, expiryD
           <p className="text-sm mb-1 text-gray-600">Discount Type: {discountType}</p>
         </div>
         <div className="flex justify-end">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-full focus:outline-none mr-1">
-            T&Cs
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-full focus:outline-none mr-1"
+          onClick={AddToCartHandleClick}
+          >
+            Add to Cart
           </button>
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-full focus:outline-none">
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-full focus:outline-none"
+            onClick={buyHandleClick}
+          >
             Buy Now
           </button>
         </div>
@@ -29,4 +99,42 @@ const CouponCard = ({ companyName, couponCode, urlForDiscount, minPrice, expiryD
   );
 };
 
-export default CouponCard;
+
+
+
+ const SkeletonCard = () => {
+  return (
+
+
+    <div class="bg-white rounded-lg overflow-hidden shadow-lg flex opacity-75 hover:bg-blue-400">
+  <div class="w-1/2 opacity-75 hover:opacity-100 rounded-lg">
+    <div class="w-full h-32 bg-gray-200"></div> 
+  </div>
+  <div class="px-4 py-2 flex flex-col justify-between w-1/2 hover:bg-white-400 hover:text-blue-500">
+    <div  class="w-50">
+      <div class="font-bold text-lg mb-1 h-4 bg-gray-200 rounded"></div>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+    </div>
+    <div class="flex justify-end ">
+      <button class="bg-gray-600 hover:bg-gray-600 text-gray-600 font-bold py-1 px-3 rounded-full focus:outline-none mr-1">
+        Kaka
+      </button>
+      <button class="bg-gray-600 hover:bg-gray-600 text-gray-600 font-bold py-1 px-3 rounded-full focus:outline-none">
+kaka
+      </button>
+    </div>
+  </div>
+</div>
+
+  );
+};
+
+export { CouponCard, SkeletonCard };

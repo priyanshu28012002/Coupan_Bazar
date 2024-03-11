@@ -44,7 +44,7 @@ const couponSchema = new Schema(
       required: true,
     },
     buyerId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         default: '',
     },
     ownerId: {
