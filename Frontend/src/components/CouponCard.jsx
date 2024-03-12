@@ -106,11 +106,48 @@ const CouponCard = ({ _id, companyName, couponCode, urlForDiscount, minPrice, ex
   return (
 
 
-    <div class="bg-white rounded-lg overflow-hidden shadow-lg flex opacity-75 hover:bg-blue-400">
-  <div class="w-1/2 opacity-75 hover:opacity-100 rounded-lg">
-    <div class="w-full h-32 bg-gray-200"></div> 
+    <div class="bg-white rounded-lg overflow-hidden shadow-lg flex opacity-75 animate-pulse ">
+    <div class=" animate-pulse w-1/2 opacity-75 hover:opacity-100 rounded-lg">
+      <div class="w-full h-56 bg-gray-200"></div> 
+    </div>
+    <div class="px-4 py-2 flex flex-col justify-between w-1/2  ">
+      <div  class="w-50">
+        <div class="font-bold text-lg mb-1 h-4 bg-gray-200 rounded"></div>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+        <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
+      </div>
+      <div class="flex justify-end ">
+        <button class="bg-gray-600 hover:bg-gray-600 text-gray-600 font-bold py-1 px-3 rounded-full focus:outline-none mr-1">
+          Kaka
+        </button>
+        <button class="bg-gray-600 hover:bg-gray-600 text-gray-600 font-bold py-1 px-3 rounded-full focus:outline-none">
+  kaka
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="px-4 py-2 flex flex-col justify-between w-1/2 hover:bg-white-400 hover:text-blue-500">
+
+  );
+};
+
+export { CouponCard, SkeletonCard };
+
+
+
+
+<div class="animate-pulse">
+<div class="bg-white rounded-lg overflow-hidden shadow-lg flex opacity-75 relative">
+  <div class=" animate-pulse w-1/2 opacity-75 hover:opacity-100 rounded-lg">
+    <div class="w-full h-56 bg-gray-200"></div> 
+  </div>
+  <div class="px-4 py-2 flex flex-col justify-between w-1/2  ">
     <div  class="w-50">
       <div class="font-bold text-lg mb-1 h-4 bg-gray-200 rounded"></div>
       <p class="text-sm mb-1 text-gray-600 h-3 bg-gray-200 rounded"></p>
@@ -132,9 +169,12 @@ kaka
       </button>
     </div>
   </div>
+
+<div class = " h-auto w-auto bg-clip-border -rotate-6 bg-red-600 border-red-600 border-4 bottom-16 sm:mx-48 mx-32 lg:mx-96  justify-between absolute">
+
+<div class=" text-center text-8xl font-semibold font-serif  bg-clip-text text-transparent bg-gradient-to-r text-white">SOLD</div>
 </div>
+</div>
+   
+  </div>
 
-  );
-};
-
-export { CouponCard, SkeletonCard };
